@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer} from 'recharts';
 import SimpleSelect from './Dropdown';
+import { StylesProvider } from '@material-ui/core';
+import styles from './App.module.css';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF8077', '#FF2422'];
 
@@ -57,6 +59,7 @@ export default class Example extends PureComponent {
 
     state = {
         activeIndex: 0,
+        title: 'Yearly Expense Chart',
         data: [
             { name: 'Groceries', value: 25 },
             { name: 'Finance & Insurance', value: 27 },
@@ -73,10 +76,73 @@ export default class Example extends PureComponent {
         });
     };
 
+    dataHandler2017 = () =>{
+        const data2017 = [
+            { name: 'Groceries', value: 55 },
+            { name: 'Finance & Insurance', value: 77 },
+            { name: 'Personal & Medical', value: 17 },
+            { name: 'House & Utilities', value: 34 },
+            { name: 'Transport', value: 16 },
+            { name: 'Others', value: 22 },
+        ];
+        this.setState({
+            data: data2017
+        })
+    }
+    dataHandler2018 = () => {
+        const data2018 = [
+            { name: 'Groceries', value: 11 },
+            { name: 'Finance & Insurance', value: 12 },
+            { name: 'Personal & Medical', value: 107 },
+            { name: 'House & Utilities', value: 54 },
+            { name: 'Transport', value: 20 },
+            { name: 'Others', value: 5 },
+        ];
+        this.setState({
+            data: data2018
+        })
+    }
+    dataHandler2019 = () => {
+        const data2019 = [
+            { name: 'Groceries', value: 45 },
+            { name: 'Finance & Insurance', value: 35 },
+            { name: 'Personal & Medical', value: 21 },
+            { name: 'House & Utilities', value: 122 },
+            { name: 'Transport', value: 7 },
+            { name: 'Others', value: 33 },
+        ];
+        this.setState({
+            data: data2019
+        })
+    }
+    dataHandler2020 = () => {
+        const data2020 = [
+            { name: 'Groceries', value: 25 },
+            { name: 'Finance & Insurance', value: 27 },
+            { name: 'Personal & Medical', value: 37 },
+            { name: 'House & Utilities', value: 84 },
+            { name: 'Transport', value: 13 },
+            { name: 'Others', value: 15 },
+        ];
+        this.setState({
+            data: data2020
+        })
+    }
+
     render() {
         return (
         <div>
-        <SimpleSelect></SimpleSelect>
+        <div className={styles.wrapper}>
+        <div>{this.state.title}</div>
+        <div>
+        <SimpleSelect 
+            parentMethod2017={this.dataHandler2017}
+            parentMethod2018={this.dataHandler2018}
+            parentMethod2019={this.dataHandler2019}
+            parentMethod2020={this.dataHandler2020}
+        />
+        </div>
+        </div>
         <ResponsiveContainer width="100%" height={700}>
             <PieChart>
                 <Pie

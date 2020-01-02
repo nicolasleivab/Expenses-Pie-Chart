@@ -5,7 +5,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import styles from './Dropdown.module.css';
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -17,9 +16,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SimpleSelect() {
+export default function SimpleSelect(props) {
     const classes = useStyles();
-    const [age, setAge] = React.useState('');
+    const [year, setYear] = React.useState('2020');
 
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
@@ -28,11 +27,20 @@ export default function SimpleSelect() {
     }, []);
 
     const handleChange = event => {
-        setAge(event.target.value);
+        setYear(event.target.value);
+        if(event.target.value == '2017'){
+            props.parentMethod2017();
+        }else if (event.target.value == '2018'){
+            props.parentMethod2018();
+        }else if (event.target.value == '2019') {
+            props.parentMethod2019();
+        }else if (event.target.value == '2020') {
+            props.parentMethod2020();
+        }
     };
 
     return (
-        <div className={styles.selectYear}>
+        <div>
             <FormControl variant="outlined" className={classes.formControl}>
                 <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
                     Year
@@ -40,7 +48,7 @@ export default function SimpleSelect() {
                 <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
-                    value={age}
+                    value={year}
                     onChange={handleChange}
                     labelWidth={labelWidth}
                 >
