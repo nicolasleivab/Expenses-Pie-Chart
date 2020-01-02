@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer} from 'recharts';
-
+import SimpleSelect from './Dropdown';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF8077', '#FF2422'];
 
@@ -75,6 +75,8 @@ export default class Example extends PureComponent {
 
     render() {
         return (
+        <div>
+        <SimpleSelect></SimpleSelect>
         <ResponsiveContainer width="100%" height={700}>
             <PieChart>
                 <Pie
@@ -82,7 +84,7 @@ export default class Example extends PureComponent {
                     activeShape={renderActiveShape}
                     data={this.state.data}
                     cx={'50%'}
-                    cy={'50%'}
+                    cy={'40%'}
                     innerRadius={'35%'}
                     outerRadius={'50%'}
                     fill="#8884d8"
@@ -95,6 +97,7 @@ export default class Example extends PureComponent {
                 </Pie>
             </PieChart>
           </ResponsiveContainer>
+        </div>
         );
     }
 }
