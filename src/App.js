@@ -1,14 +1,6 @@
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Sector, Cell } from 'recharts';
 
-const data = [
-    { name: 'Groceries', value: 25 },
-    { name: 'Finance & Insurance', value: 27 },
-    { name: 'Personal & Medical', value: 37 },
-    { name: 'House & Utilities', value: 84 },
-    { name: 'Transport', value: 13 },
-    { name: 'Others', value: 15 },
-];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF8077', '#FF2422'];
 
@@ -65,6 +57,14 @@ export default class Example extends PureComponent {
 
     state = {
         activeIndex: 0,
+        data: [
+            { name: 'Groceries', value: 25 },
+            { name: 'Finance & Insurance', value: 27 },
+            { name: 'Personal & Medical', value: 37 },
+            { name: 'House & Utilities', value: 84 },
+            { name: 'Transport', value: 13 },
+            { name: 'Others', value: 15 },
+        ]
     };
 
     onPieEnter = (data, index) => {
@@ -79,7 +79,7 @@ export default class Example extends PureComponent {
                 <Pie
                     activeIndex={this.state.activeIndex}
                     activeShape={renderActiveShape}
-                    data={data}
+                    data={this.state.data}
                     cx={350}
                     cy={250}
                     innerRadius={100}
@@ -89,7 +89,7 @@ export default class Example extends PureComponent {
                     onMouseEnter={this.onPieEnter}
                 >
                     {
-                        data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                        this.state.data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
                     }
                 </Pie>
             </PieChart>
